@@ -1,5 +1,5 @@
 # Zen
 
-UV Proxy for Proxathon
+A powerful proxy powered by Ultraviolet
 
 # How to Use

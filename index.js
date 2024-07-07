@@ -3,23 +3,35 @@ import { createServer } from "node:http";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux";
-import { join } from "node:path";
+// import { join } from "node:path";
 import { hostname } from "node:os";
 import wisp from "wisp-server-node"
+import path, { dirname } from "path"
+import { fileURLToPath } from 'url';
+import routes from './routes.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-// Load our publicPath first and prioritize it over UV.
+
 app.use(express.static("public"));
-// Load vendor files last.
-// The vendor's uv.config.js won't conflict with our uv.config.js inside the publicPath directory.
+
 app.use("/uv/", express.static(uvPath));
 app.use("/epoxy/", express.static(epoxyPath));
 app.use("/baremux/", express.static(baremuxPath));
+const publicPath = path.join(__dirname, "public")
+
+routes.forEach(route => {
+  app.get(route.path, (req, res) => {
+      res.sendFile(path.join(__dirname, 'public', route.file));
+  });
+});
 
 // Error for everything else
 app.use((req, res) => {
   res.status(404);
-  res.sendFile(join("public", "404.html"));
+  res.sendFile(path.join(publicPath, "404.html"));
 });
 
 const server = createServer();
