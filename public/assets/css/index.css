@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
@@ -175,3 +176,14 @@ h1 {
   display: none;
 }
 
+.autocomplete {
+  color: white;
+  background-color: #012;
+  width: 350px;
+  border-radius: 2vh;
+  margin-top: 15px;
+}
+
+.autocomplete div {
+  margin-top: 5px;
+}

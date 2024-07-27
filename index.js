@@ -28,6 +28,14 @@ routes.forEach(route => {
   });
 });
 
+app.get("/search=:query", async (req, res) => {
+  const { query } = req.params;
+
+  const reply = await fetch(`http://api.duckduckgo.com/ac?q=${query}&format=json`).then((resp) => resp.json());
+
+  res.send(reply);
+});
+
 // Error for everything else
 app.use((req, res) => {
   res.status(404);

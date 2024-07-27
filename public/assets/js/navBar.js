@@ -22,8 +22,10 @@ const sidebar = document.getElementById('sidebar');
 
 sidebarToggle.addEventListener('click', () => {
     sidebar.classList.toggle('active');
+    sidebarToggle.classList.add('hidden');
 });
 
 sidebarClose.addEventListener('click', () => {
     sidebar.classList.remove('active');
+    sidebarToggle.classList.remove('hidden');
 });

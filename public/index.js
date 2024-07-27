@@ -37,3 +37,4 @@ form.addEventListener("submit", async (event) => {
   frame.style.display = "block";
   frame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
+

@@ -10,11 +10,12 @@
     cursor: pointer;
     padding: 5px 3px 3px 5px;
     border-radius: .5vh;
+    z-index: 1000
 }
 
-.sideOpen:hover {
+/* .sideOpen:hover {
     background-color: #003;
-}
+} */
 
 #clock {
     position: absolute;
@@ -39,6 +40,7 @@
     border-right-width: 0.02px;
     border-right-color: white;
     border-right-style: solid;
+    z-index: 1000;
 }
 
 #sidebar.active {

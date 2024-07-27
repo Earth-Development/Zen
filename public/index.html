@@ -139,6 +139,7 @@
     <img class="logo" src="zen-logo.png" alt="Zen" />
     <h1>Zen</h1>
   </div>
+  <!-- https://www.google.com/search?q=%s -->
   <form id="uv-form" class="flex-center">
     <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
     <input id="uv-address" type="text" placeholder="Browse the Web..." autocomplete="off" />
@@ -167,6 +168,9 @@
         </g>
       </svg></button> -->
   </form>
+  <center>
+    <div class="autocomplete"></div>
+  </center>
   <div class="desc left-margin">
     <p id="uv-error"></p>
     <pre id="uv-error-code"></pre>
@@ -174,6 +178,50 @@
   <iframe style="display: none;" id="uv-frame"></iframe>
   <script src="assets/js/navBar.js"></script>
   <script src="assets/js/global.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const input = document.getElementById('uv-address');
+      const list = document.querySelector('.autocomplete');
+
+      input.addEventListener('input', function () {
+        const query = this.value;
+
+
+        list.innerHTML = '';
+
+        if (!query) {
+          return;
+        }
+
+
+        fetch(`/search=${query}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data && data.length > 0) {
+              data.forEach(suggestion => {
+                const item = document.createElement('div');
+                item.textContent = suggestion.phrase;
+                item.addEventListener('click', function () {
+                  input.value = suggestion.phrase;
+                  form.dispatchEvent(new Event("submit"));
+                  list.innerHTML = '';
+                });
+                list.appendChild(item);
+              });
+            }
+          })
+          .catch(error => console.error('Error fetching suggestions:', error));
+      });
+
+
+      document.addEventListener('click', function (e) {
+        if (e.target !== input) {
+          list.innerHTML = '';
+        }
+      });
+    });
+
+  </script>
 </body>
 
 </html>
