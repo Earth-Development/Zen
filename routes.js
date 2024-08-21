@@ -1,4 +1,4 @@
-// routes.js
+
 const routes = [
     { path: '/', file: 'index.html' },
     { path: '/settings', file: 'settings.html' },

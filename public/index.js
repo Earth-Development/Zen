@@ -2,15 +2,15 @@
 /**
  * @type {HTMLFormElement}
  */
-const form = document.getElementById("uv-form");
+const form = document.getElementById("prox-form");
 /**
  * @type {HTMLInputElement}
  */
-const address = document.getElementById("uv-address");
+const address = document.getElementById("searchaddress");
 /**
  * @type {HTMLInputElement}
  */
-const searchEngine = document.getElementById("uv-search-engine");
+const searchEngine = document.getElementById("search-engine");
 /**
  * @type {HTMLParagraphElement}
  */

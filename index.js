@@ -36,7 +36,7 @@ app.get("/search=:query", async (req, res) => {
   res.send(reply);
 });
 
-// Error for everything else
+
 app.use((req, res) => {
   res.status(404);
   res.sendFile(path.join(publicPath, "404.html"));
